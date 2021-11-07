@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          Kill Bandcamp (View Embedded Player)
-// @version       0.0.1
+// @version       0.0.2
 // @description   Adds a button to view the album in an embedded player.
 // @author        sammynilla
 // @match         *://*.bandcamp.com/album/*
@@ -19,9 +19,7 @@
 
   // Start of UserScript
   let URL = document.head.querySelector("meta[property~='og:video']").content;
-  let base_props = URL.split(URL_BASE)[1];
-  base_props = base_props.substring(base_props.length-1, 1);
-  let keypairs = base_props.split('/');
+  let keypairs = (URL.split(URL_BASE)[1]).split('/');
 
   const props = new Map();
   keypairs.forEach(add_to_props);
@@ -48,6 +46,8 @@
   // HELPER FUNCTIONS
   function add_to_props(value) {
     let property = value.split('=');
-    props.set(property[0], property[1]);
+    if (property[1]) {
+      props.set(property[0], property[1]);
+    }
   }
 })();
