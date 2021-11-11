@@ -26,8 +26,8 @@
 
   // Default settings. Do not alter.
   props.set('tracklist', true);
-  PLAYER_SIZE.includes('small') ? 
-    props.delete('size') 
+  PLAYER_SIZE.includes('small') ?
+    props.delete('size')
   : props.set('size', PLAYER_SIZE);
   // Integrate color props
   props.set('bgcol', BACKGROUND_COLOR.replace('#', ''));
